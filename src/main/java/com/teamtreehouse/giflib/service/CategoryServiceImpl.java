@@ -13,18 +13,18 @@ public class CategoryServiceImpl implements CategoryService {
     private CategoryDao categoryDao;
 
     @Override
-    public List<Category> findAll() {
+    public Iterable<Category> findAll() {
         return categoryDao.findAll();
     }
 
     @Override
     public Category findById(Long id) {
-        return categoryDao.findById(id);
+        return categoryDao.findOne(id);
     }
 
     @Override
-    public void save(Category category) {
-        categoryDao.save(category);
+    public Category save(Category category) {
+        return categoryDao.save(category);
     }
 
     @Override

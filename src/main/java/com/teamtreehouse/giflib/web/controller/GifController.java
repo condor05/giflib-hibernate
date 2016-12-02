@@ -10,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import com.google.common.collect.Lists;
+
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
@@ -27,7 +29,7 @@ public class GifController {
     @RequestMapping("/")
     public String listGifs(Model model) {
         // TODO: Get all gifs
-        List<Gif> gifs = gifService.findAll();
+        List<Gif> gifs = Lists.newArrayList(gifService.findAll());
 
         model.addAttribute("gifs", gifs);
         return "gif/index";

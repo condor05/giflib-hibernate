@@ -5,8 +5,8 @@ import com.teamtreehouse.giflib.model.Category;
 import java.util.List;
 
 public interface CategoryService {
-    List<Category> findAll();
+    Iterable<Category> findAll();
     Category findById(Long id);
-    void save(Category category);
+    Category save(Category category);
     void delete(Category category);
 }

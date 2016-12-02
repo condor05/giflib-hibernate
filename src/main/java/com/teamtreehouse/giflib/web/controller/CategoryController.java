@@ -1,5 +1,6 @@
 package com.teamtreehouse.giflib.web.controller;
 
+import com.google.common.collect.Lists;
 import com.teamtreehouse.giflib.model.Category;
 import com.teamtreehouse.giflib.service.CategoryService;
 import com.teamtreehouse.giflib.web.Color;
@@ -26,7 +27,7 @@ public class CategoryController {
     @RequestMapping("/categories")
     public String listCategories(Model model) {
         // TODO: Get all categories
-        List<Category> categories = categoryService.findAll();
+        List<Category> categories = Lists.newArrayList(categoryService.findAll());
 
         model.addAttribute("categories",categories);
         return "category/index";
