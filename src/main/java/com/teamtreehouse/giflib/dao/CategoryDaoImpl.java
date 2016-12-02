@@ -38,7 +38,11 @@ public class CategoryDaoImpl implements CategoryDao {
         List<Category> categories = session.createQuery(criteria).getResultList();
 
         // Close session
-        session.close();
+        try {
+            session.close();
+        } catch (Exception e) {
+            throw new RuntimeException("session cannot be closed");
+        }
 
         return categories;
     }
@@ -48,7 +52,11 @@ public class CategoryDaoImpl implements CategoryDao {
         Session session = sessionFactory.openSession();
         Category category = session.get(Category.class,id);
         Hibernate.initialize(category.getGifs());
-        session.close();
+        try {
+            session.close();
+        } catch (Exception e) {
+            throw new RuntimeException("session cannot be closed");
+        }
         return category;
     }
 
@@ -67,7 +75,11 @@ public class CategoryDaoImpl implements CategoryDao {
         session.getTransaction().commit();
 
         // Close the session
-        session.close();
+        try {
+            session.close();
+        } catch (Exception e) {
+            throw new RuntimeException("session cannot be closed");
+        }
     }
 
     @Override
@@ -76,6 +88,10 @@ public class CategoryDaoImpl implements CategoryDao {
         session.beginTransaction();
         session.delete(category);
         session.getTransaction().commit();
-        session.close();
+        try {
+            session.close();
+        } catch (Exception e) {
+            throw new RuntimeException("session cannot be closed");
+        }
     }
 }
